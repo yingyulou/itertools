@@ -173,33 +173,24 @@ vector<T> range(T startNum, T endNum, T stepNum)
 
 // product
 template <typename T>
-vector<vector<T>> __addNewList(const vector<vector<T>> &nowDataList, const vector<T> &addList)
-{
-    vector<vector<T>> resList;
-    vector<T> tmpList;
-
-    for (auto &subList: nowDataList)
-    {
-        for (auto &addData: addList)
-        {
-            tmpList = subList;
-            tmpList.push_back(addData);
-            resList.push_back(tmpList);
-        }
-    }
-
-    return resList;
-}
-
-
-template <typename T>
 vector<vector<T>> product(const vector<vector<T>> &dataList)
 {
     vector<vector<T>> resList {{}};
+    vector<vector<T>> tmpResList;
 
     for (auto &addList: dataList)
     {
-        resList = __addNewList(resList, addList);
+        for (auto &x: resList)
+        {
+            for (auto &y: addList)
+            {
+                tmpResList.push_back(x);
+                tmpResList.back().push_back(y);
+            }
+        }
+
+        resList = tmpResList;
+        tmpResList.clear();
     }
 
     return resList;
