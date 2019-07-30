@@ -1,7 +1,7 @@
 # itertools
 Partial implementation of the Python itertools module.
 
-To use this module, simply include the "itertools.hpp" herader file:
+To use this module, simply include the "itertools.hpp" header file:
 
     # include "itertools.hpp"
 
