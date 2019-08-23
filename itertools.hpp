@@ -11,7 +11,7 @@ VERSION
 
 LATEST UPDATE
 
-    2019.4.15
+    2019.8.23
 
 */
 
@@ -23,110 +23,14 @@ LATEST UPDATE
 namespace itertools
 {
 
-// Using
-using std::vector;
-
 ////////////////////////////////////////////////////////////////////////////////
-// Class: Cycle
-////////////////////////////////////////////////////////////////////////////////
-
-template <typename T>
-class cycle
-{
-private:
-
-    // Data
-    const vector<T> __dataList;
-
-    // Index
-    int __nowIdx, __endIdx;
-
-
-public:
-
-    // Init
-    cycle(const vector<T> &dataList);
-
-    template<typename Iterator>
-    cycle(const Iterator beginIter, const Iterator endIter);
-
-    // Next
-    T next();
-};
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Functions Header
-////////////////////////////////////////////////////////////////////////////////
-
 // range
-template <typename T>
-vector<T> range(T endNum);
-
-template <typename T>
-vector<T> range(T startNum, T endNum, T stepNum = 1);
-
-
-// product
-template <typename T>
-vector<vector<T>> product(const vector<vector<T>> &dataList);
-
-
-// permutations
-template <typename T>
-vector<vector<T>> permutations(const vector<T> &dataList, int catchLen = -1);
-
-
-// combinations
-template <typename T>
-vector<vector<T>> combinations(const vector<T> &dataList, int catchLen = -1);
-
-
-// combinations_with_replacement
-template <typename T>
-vector<vector<T>> combinations_with_replacement(const vector<T> &dataList, int catchLen = -1);
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Implementation Of Class: Cycle
 ////////////////////////////////////////////////////////////////////////////////
 
-// Init
 template <typename T>
-cycle<T>::cycle(const vector<T> &dataList): __dataList(dataList), __nowIdx(-1),
-    __endIdx(dataList.size()) {}
-
-
-template <typename T>
-template<typename Iterator>
-cycle<T>::cycle(const Iterator beginIter, const Iterator endIter): \
-    __dataList(vector<T>(beginIter, endIter)), __nowIdx(-1), __endIdx(endIter - beginIter) {}
-
-
-// Next
-template <typename T>
-T cycle<T>::next()
+inline std::vector<T> range(T endNum)
 {
-    __nowIdx++;
-
-    if (__nowIdx == __endIdx)
-    {
-        __nowIdx = 0;
-    }
-
-    return __dataList[__nowIdx];
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Implementation Of Functions
-////////////////////////////////////////////////////////////////////////////////
-
-// range
-template <typename T>
-vector<T> range(T endNum)
-{
-    vector<T> rangeList;
+    std::vector<T> rangeList;
 
     for (T i = 0; i < endNum; i++)
     {
@@ -138,9 +42,9 @@ vector<T> range(T endNum)
 
 
 template <typename T>
-vector<T> range(T startNum, T endNum, T stepNum)
+inline std::vector<T> range(T startNum, T endNum, T stepNum = 1)
 {
-    vector<T> rangeList;
+    std::vector<T> rangeList;
 
     if (startNum <= endNum)
     {
@@ -171,12 +75,59 @@ vector<T> range(T startNum, T endNum, T stepNum)
 }
 
 
-// product
+////////////////////////////////////////////////////////////////////////////////
+// Class cycle
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename T>
-vector<vector<T>> product(const vector<vector<T>> &dataList)
+class cycle
 {
-    vector<vector<T>> resList {{}};
-    vector<vector<T>> tmpResList;
+public:
+
+    // Init
+    inline cycle(const std::vector<T> &dataList): __dataList(dataList), __nowIdx(-1),
+        __endIdx(dataList.size()) {}
+
+
+    template <typename Iterator>
+    inline cycle(const Iterator beginIter, const Iterator endIter):
+        __dataList(std::vector<T>(beginIter, endIter)), __nowIdx(-1),
+        __endIdx(endIter - beginIter) {}
+
+
+    // Next
+    inline T next()
+    {
+        __nowIdx++;
+
+        if (__nowIdx == __endIdx)
+        {
+            __nowIdx = 0;
+        }
+
+        return __dataList[__nowIdx];
+    }
+
+
+private:
+
+    // Data
+    const std::vector<T> __dataList;
+
+    // Index
+    int __nowIdx, __endIdx;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// product
+////////////////////////////////////////////////////////////////////////////////
+
+template <typename T>
+std::vector<std::vector<T>> product(const std::vector<std::vector<T>> &dataList)
+{
+    std::vector<std::vector<T>> resList {{}};
+    std::vector<std::vector<T>> tmpResList;
 
     for (auto &addList: dataList)
     {
@@ -197,9 +148,12 @@ vector<vector<T>> product(const vector<vector<T>> &dataList)
 }
 
 
+////////////////////////////////////////////////////////////////////////////////
 // permutations
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename T>
-vector<vector<T>> permutations(const vector<T> &dataList, int catchLen)
+std::vector<std::vector<T>> permutations(const std::vector<T> &dataList, int catchLen = -1)
 {
     int dataLen = dataList.size();
 
@@ -208,10 +162,10 @@ vector<vector<T>> permutations(const vector<T> &dataList, int catchLen)
         catchLen = dataLen;
     }
 
-    vector<vector<T>> resList;
-    vector<T> tmpList;
-    vector<int> idxList = range(dataLen);
-    vector<int> cycleList = range(dataLen, dataLen - catchLen, -1);
+    std::vector<std::vector<T>> resList;
+    std::vector<T> tmpList;
+    std::vector<int> idxList = range(dataLen);
+    std::vector<int> cycleList = range(dataLen, dataLen - catchLen, -1);
     int tmpNum, swapNum, j;
 
     for (int idx = 0; idx < catchLen; idx++)
@@ -271,9 +225,12 @@ vector<vector<T>> permutations(const vector<T> &dataList, int catchLen)
 }
 
 
+////////////////////////////////////////////////////////////////////////////////
 // combinations
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename T>
-vector<vector<T>> combinations(const vector<T> &dataList, int catchLen)
+std::vector<std::vector<T>> combinations(const std::vector<T> &dataList, int catchLen = -1)
 {
     int dataLen = dataList.size();
 
@@ -282,9 +239,9 @@ vector<vector<T>> combinations(const vector<T> &dataList, int catchLen)
         catchLen = dataLen;
     }
 
-    vector<vector<T>> resList;
-    vector<T> tmpList;
-    vector<int> idxList = range(catchLen);
+    std::vector<std::vector<T>> resList;
+    std::vector<T> tmpList;
+    std::vector<int> idxList = range(catchLen);
 
     for (auto idx: idxList)
     {
@@ -332,9 +289,13 @@ vector<vector<T>> combinations(const vector<T> &dataList, int catchLen)
 }
 
 
+////////////////////////////////////////////////////////////////////////////////
 // combinations_with_replacement
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename T>
-vector<vector<T>> combinations_with_replacement(const vector<T> &dataList, int catchLen)
+std::vector<std::vector<T>> combinations_with_replacement(
+    const std::vector<T> &dataList, int catchLen = -1)
 {
     int dataLen = dataList.size();
 
@@ -343,9 +304,9 @@ vector<vector<T>> combinations_with_replacement(const vector<T> &dataList, int c
         catchLen = dataLen;
     }
 
-    vector<vector<T>> resList;
-    vector<T> tmpList;
-    vector<int> idxList(catchLen, 0);
+    std::vector<std::vector<T>> resList;
+    std::vector<T> tmpList;
+    std::vector<int> idxList(catchLen, 0);
 
     for (auto idx: idxList)
     {
@@ -393,8 +354,7 @@ vector<vector<T>> combinations_with_replacement(const vector<T> &dataList, int c
 }
 
 
-// End Namespace itertools
-}
+}  // End namespace itertools
 
 
-#endif
+#endif  // __ITERTOOLS_HPP

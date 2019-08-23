@@ -5,7 +5,7 @@ Partial implementation of the Python itertools module.
 To use this module, simply include the "itertools.hpp" herader file:
 
 ``` Cpp
-# include "itertools.hpp"
+#include "itertools.hpp"
 ```
 
 All classes and functions are located under the namespace "itertools".
@@ -16,10 +16,10 @@ All classes and functions are located under the namespace "itertools".
 
 ``` Cpp
 template <typename T>
-vector<T> range(T endNum);
+inline std::vector<T> range(T endNum);
 
 template <typename T>
-vector<T> range(T startNum, T endNum, T stepNum = 1);
+inline std::vector<T> range(T startNum, T endNum, T stepNum = 1);
 ```
 
 Generally equal to the Python range. But supporting for double and so on.
@@ -40,13 +40,16 @@ Create a "cycle" object from a vector. Use the method "next" to get the next val
 
 ``` Cpp
 // Init
-cycle(const vector<T> &dataList);
+template <typename T>
+inline cycle(const std::vector<T> &dataList);
 
+template <typename T>
 template<typename Iterator>
-cycle(const Iterator beginIter, const Iterator endIter);
+inline cycle(const Iterator beginIter, const Iterator endIter);
 
 // Next
-T next();
+template <typename T>
+inline T next();
 ```
 
 ### Example
@@ -68,7 +71,7 @@ for (int i = 0; i < 10; i++)
 
 ``` Cpp
 template <typename T>
-vector<vector<T>> product(const vector<vector<T>> &dataList);
+std::vector<std::vector<T>> product(const std::vector<std::vector<T>> &dataList);
 ```
 
 Generally equal to the "itertools.product" in Python.
@@ -86,7 +89,7 @@ product(vector<vector<int>> {{1, 2}, {3, 4}})
 
 ``` Cpp
 template <typename T>
-vector<vector<T>> permutations(const vector<T> &dataList, int catchLen = -1);
+std::vector<std::vector<T>> permutations(const std::vector<T> &dataList, int catchLen = -1);
 ```
 
 Generally equal to the "itertools.permutations" in Python.
@@ -106,7 +109,7 @@ permutations(vector<int> {1, 2, 3}, 2)
 
 ``` Cpp
 template <typename T>
-vector<vector<T>> combinations(const vector<T> &dataList, int catchLen = -1);
+std::vector<std::vector<T>> combinations(const std::vector<T> &dataList, int catchLen = -1);
 ```
 
 Generally equal to the "itertools.combinations" in Python.
@@ -126,7 +129,8 @@ combinations(vector<int> {1, 2, 3}, 2)
 
 ``` Cpp
 template <typename T>
-vector<vector<T>> combinations_with_replacement(const vector<T> &dataList, int catchLen = -1);
+std::vector<std::vector<T>> combinations_with_replacement(
+    const std::vector<T> &dataList, int catchLen = -1);
 ```
 
 Generally equal to the "itertools.combinations_with_replacement" in Python.
