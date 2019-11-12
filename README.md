@@ -2,10 +2,10 @@
 
 Partial implementation of the Python itertools module.
 
-To use this module, simply include the "itertools.hpp" herader file:
+To use this module, simply include the "itertools.h" herader file:
 
 ``` Cpp
-#include "itertools.hpp"
+#include "itertools.h"
 ```
 
 All classes and functions are located under the namespace "itertools".
