@@ -44,7 +44,7 @@ template <typename T>
 inline cycle(const std::vector<T> &dataList);
 
 template <typename T>
-template<typename Iterator>
+template <typename Iterator>
 inline cycle(const Iterator beginIter, const Iterator endIter);
 
 // Next
