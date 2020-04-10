@@ -11,7 +11,7 @@ VERSION
 
 LATEST UPDATE
 
-    2019.8.23
+    2020.4.10
 
 */
 
@@ -28,7 +28,7 @@ namespace itertools
 ////////////////////////////////////////////////////////////////////////////////
 
 template <typename T>
-inline std::vector<T> range(T endNum)
+std::vector<T> range(T endNum)
 {
     std::vector<T> rangeList;
 
@@ -42,7 +42,7 @@ inline std::vector<T> range(T endNum)
 
 
 template <typename T>
-inline std::vector<T> range(T startNum, T endNum, T stepNum = 1)
+std::vector<T> range(T startNum, T endNum, T stepNum = 1)
 {
     std::vector<T> rangeList;
 
@@ -85,18 +85,18 @@ class cycle
 public:
 
     // Init
-    inline cycle(const std::vector<T> &dataList): __dataList(dataList), __nowIdx(-1),
+    cycle(const std::vector<T> &dataList): __dataList(dataList), __nowIdx(-1),
         __endIdx(dataList.size()) {}
 
 
     template <typename Iterator>
-    inline cycle(const Iterator beginIter, const Iterator endIter):
+    cycle(const Iterator beginIter, const Iterator endIter):
         __dataList(std::vector<T>(beginIter, endIter)), __nowIdx(-1),
         __endIdx(endIter - beginIter) {}
 
 
     // Next
-    inline T next()
+    T next()
     {
         __nowIdx++;
 

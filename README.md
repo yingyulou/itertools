@@ -16,10 +16,10 @@ All classes and functions are located under the namespace "itertools".
 
 ``` Cpp
 template <typename T>
-inline std::vector<T> range(T endNum);
+std::vector<T> range(T endNum);
 
 template <typename T>
-inline std::vector<T> range(T startNum, T endNum, T stepNum = 1);
+std::vector<T> range(T startNum, T endNum, T stepNum = 1);
 ```
 
 Generally equal to the Python range. But supporting for double and so on.
@@ -41,15 +41,15 @@ Create a "cycle" object from a vector. Use the method "next" to get the next val
 ``` Cpp
 // Init
 template <typename T>
-inline cycle(const std::vector<T> &dataList);
+cycle(const std::vector<T> &dataList);
 
 template <typename T>
 template <typename Iterator>
-inline cycle(const Iterator beginIter, const Iterator endIter);
+cycle(const Iterator beginIter, const Iterator endIter);
 
 // Next
 template <typename T>
-inline T next();
+T next();
 ```
 
 ### Example
