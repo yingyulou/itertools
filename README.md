@@ -16,10 +16,10 @@ All classes and functions are located under the namespace "itertools".
 
 ``` Cpp
 template <typename T>
-std::vector<T> range(T endNum);
+vector<T> range(T endNum);
 
 template <typename T>
-std::vector<T> range(T startNum, T endNum, T stepNum = 1);
+vector<T> range(T startNum, T endNum, T stepNum = 1);
 ```
 
 Generally equal to the Python range. But supporting for double and so on.
@@ -41,7 +41,7 @@ Create a "cycle" object from a vector. Use the method "next" to get the next val
 ``` Cpp
 // Init
 template <typename T>
-cycle(const std::vector<T> &dataList);
+cycle(const vector<T> &dataList);
 
 template <typename T>
 template <typename Iterator>
@@ -71,7 +71,7 @@ for (int i = 0; i < 10; i++)
 
 ``` Cpp
 template <typename T>
-std::vector<std::vector<T>> product(const std::vector<std::vector<T>> &dataList);
+vector<vector<T>> product(const vector<vector<T>> &dataList);
 ```
 
 Generally equal to the "itertools.product" in Python.
@@ -89,7 +89,7 @@ product(vector<vector<int>> {{1, 2}, {3, 4}})
 
 ``` Cpp
 template <typename T>
-std::vector<std::vector<T>> permutations(const std::vector<T> &dataList, int catchLen = -1);
+vector<vector<T>> permutations(const vector<T> &dataList, int catchLen = -1);
 ```
 
 Generally equal to the "itertools.permutations" in Python.
@@ -109,7 +109,7 @@ permutations(vector<int> {1, 2, 3}, 2)
 
 ``` Cpp
 template <typename T>
-std::vector<std::vector<T>> combinations(const std::vector<T> &dataList, int catchLen = -1);
+vector<vector<T>> combinations(const vector<T> &dataList, int catchLen = -1);
 ```
 
 Generally equal to the "itertools.combinations" in Python.
@@ -129,8 +129,8 @@ combinations(vector<int> {1, 2, 3}, 2)
 
 ``` Cpp
 template <typename T>
-std::vector<std::vector<T>> combinations_with_replacement(
-    const std::vector<T> &dataList, int catchLen = -1);
+vector<vector<T>> combinations_with_replacement(
+    const vector<T> &dataList, int catchLen = -1);
 ```
 
 Generally equal to the "itertools.combinations_with_replacement" in Python.
